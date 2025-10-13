@@ -1007,3 +1007,144 @@ body.sidebar-collapsed .main-content {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 8px;
 }
+
+/* ===== FIXED TEMP UNIT BUTTON ===== */
+#tempUnit {
+  width: 40px;             /* same as search button */
+  height: 40px;            /* same as search button */
+  border-radius: 50%;      /* circular */
+  border: none;
+  background-color: var(--accent-color); 
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;         
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  padding: 0;              
+  margin: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Add dropdown arrow icon inside the circle */
+#tempUnit::after {
+  content: "▼";  
+  position: absolute;
+  right: 6px;             /* adjust inside circle */
+  font-size: 10px;
+  pointer-events: none;
+  color: #fff;
+}
+
+/* Hover effect like search button */
+#tempUnit:hover {
+  background-color: var(--accent-hover);
+}
+
+
+/* ===== LIGHT MODE TEXT COLORS ===== */
+body.light-mode {
+  --text-color: #111; /* dark text for readability */
+  --box-bg-color: #f0f0f0; /* light background for boxes */
+}
+
+/* Branding text and quotes */
+body.light-mode .branding,
+body.light-mode .branding-title,
+body.light-mode .branding-logo-text,
+body.light-mode .weather-quote,
+body.light-mode .weather-tip {
+  color: var(--text-color);
+  background-color: var(--box-bg-color); /* optional for boxes */
+}
+
+/* If your stats box has padding/borders */
+body.light-mode .weather-tip {
+  border: 1px solid #ccc; /* make it more visible in light mode */
+  padding: 10px;
+  border-radius: 8px;
+}
+
+
+
+
+/* ===== LIGHT MODE TEXT COLORS ===== */
+body.light-mode {
+  --text-color: #111;        /* dark text for readability */
+  --box-bg-color: #f0f0f0;   /* light background for boxes */
+}
+
+/* Branding text, quotes, and tips */
+body.light-mode .branding,
+body.light-mode .branding-title,
+body.light-mode .branding-logo-text,
+body.light-mode .weather-quote,
+body.light-mode .weather-tip {
+  color: var(--text-color);
+  background-color: var(--box-bg-color); /* optional for boxes */
+}
+
+/* If your stats box has padding/borders */
+body.light-mode .weather-tip {
+  border: 1px solid #ccc; /* make it more visible in light mode */
+  padding: 10px;
+  border-radius: 8px;
+}
+
+/* ===== ADDITIONAL FIX FOR RIGHT-COLUMN STATS ===== */
+body.light-mode .right-column p {
+  color: #333333;  /* dark gray so humidity, wind, etc are readable */
+}
+
+
+/* ===== LIGHT MODE FIX ===== */
+body.light-mode {
+  --text-color: #111;         /* general text */
+  --accent-color: #3498db;    /* optional accent color in light mode */
+  --card-bg: #f0f0f0;         /* background for cards/boxes */
+  --stats-label-color: #1a2a35; /* labels like Humidity, Wind */
+  --stats-desc-color: #333333;  /* values/descriptions */
+}
+
+/* Branding, quotes, tips */
+body.light-mode .branding,
+body.light-mode .branding-title,
+body.light-mode .branding-logo-text,
+body.light-mode .weather-quote,
+body.light-mode .weather-tip {
+  color: var(--text-color);
+  background-color: var(--card-bg); /* optional */
+}
+
+/* Right-column stats (Humidity, Wind, Tip) */
+body.light-mode .right-column p {
+  color: var(--stats-desc-color) !important;
+}
+
+/* Weather stats table */
+body.light-mode #weatherStats th {
+  color: var(--stats-label-color) !important;
+}
+
+body.light-mode #weatherStats td {
+  color: var(--stats-desc-color) !important;
+}
+
+/* City cards */
+body.light-mode .city-card h4,
+body.light-mode .city-card .temp,
+body.light-mode .city-card .weather {
+  color: var(--text-color) !important;
+}
+
+/* Alerts box */
+body.light-mode #weatherAlert {
+  color: var(--text-color) !important;
+}
+

@@ -296,16 +296,16 @@ themeToggleBtn.addEventListener("click", () => {
   document.body.classList.toggle("light-mode"); // toggle class
 
   if (document.body.classList.contains("light-mode")) {
-    // Set CSS variables for light mode
-    themeToggleBtn.textContent = "🌙 Dark Mode";
+    // Light mode active
+    themeToggleBtn.textContent = "🌙 Dark Mode"; // offer switch to dark
     document.documentElement.style.setProperty('--bg-color', '#f4f4f4');
     document.documentElement.style.setProperty('--text-color', '#1a2a35');
     document.documentElement.style.setProperty('--card-bg', '#ffffff');
     document.documentElement.style.setProperty('--accent-color', '#3498db');
     document.documentElement.style.setProperty('--border-color', '#ccc');
   } else {
-    // Set CSS variables for dark mode
-    themeToggleBtn.textContent = "🌙 Dark Mode";
+    // Dark mode active
+    themeToggleBtn.textContent = "☀️ Light Mode"; // offer switch to light
     document.documentElement.style.setProperty('--bg-color', '#1a2a35');
     document.documentElement.style.setProperty('--text-color', '#e0e0e0');
     document.documentElement.style.setProperty('--card-bg', '#223340');
@@ -313,6 +313,7 @@ themeToggleBtn.addEventListener("click", () => {
     document.documentElement.style.setProperty('--border-color', '#3f5160');
   }
 });
+
 
 
 
@@ -649,8 +650,21 @@ function updateSidebarStats(data) {
     </table>
   `;
 
-  document.getElementById("weatherStats").innerHTML = html;
+  const statsEl = document.getElementById("weatherStats");
+  statsEl.innerHTML = html;
+
+  // ✅ FIX: update text colors based on theme
+  if (document.body.classList.contains("light-mode")) {
+    statsEl.style.color = "#111";          // dark text for readability
+    statsEl.querySelectorAll("th").forEach(el => el.style.color = "#111"); 
+    statsEl.querySelectorAll("td").forEach(el => el.style.color = "#111");
+  } else {
+    statsEl.style.color = "#eee";          // light text for dark mode
+    statsEl.querySelectorAll("th").forEach(el => el.style.color = "#eee"); 
+    statsEl.querySelectorAll("td").forEach(el => el.style.color = "#eee");
+  }
 }
+
 
 // ✅ Generate a friendly weather tip based on current data
 function generateWeatherTip(data) {
@@ -682,3 +696,18 @@ function generateWeatherTip(data) {
   // Join multiple tips nicely
   return tips.join(" ");
 }
+
+
+// At the bottom of your JS
+function updateThemeButtonText() {
+  if (document.body.classList.contains("light-mode")) {
+    themeToggleBtn.textContent = "🌙 Dark Mode";
+  } else {
+    themeToggleBtn.textContent = "☀️ Light Mode";
+  }
+}
+
+// Run once at page load
+updateThemeButtonText();
+
+
