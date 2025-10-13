@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App</title>
+  <link rel="stylesheet" href="index.css">
+  <style>
+    /* ✅ Ensures canvas draws properly inside sidebar */
+ #sunPathCanvas {
+  width: 100%;       /* fill the parent container */
+  height: 220px;     /* set a proper height for full sun curve */
+  border-radius: 8px;
+  background: #001f3f; /* or rgba(0,0,0,0.2) if you prefer */
+  display: block;
+
+}
+</style>
+
+</head>
+<body>
+
+  
+ <!-- ===== SIDE NAVBAR ===== -->
+<aside class="sidebar">
+  <div class="sidebar-top">
+    <h2 class="logo">☁️ WeatherApp</h2>
+    <nav class="nav-links">
+      <a href="#" class="active">🏠 Home</a>
+      <a href="#">🌦️ Forecast</a>
+      <a href="#">🗺️ Map</a>
+      <a href="#">📍 Locations</a>
+    </nav>
+  </div>
+
+  <button id="sidebarToggle" class="sidebar-toggle">
+    <span id="arrowIcon">❮</span>
+  </button>
+
+
+
+    <div class="sidebar-bottom">
+      <button id="theme-toggle" class="theme-toggle">🌙 Dark Mode</button>
+    </div>
+  </aside>
+
+
+<div class="sidebar-filler">
+  <div class="branding">
+    <div class="branding-logo-text">☁️</div>
+    <h2 class="branding-title">Weather Checker</h2>
+  </div>
+  <blockquote class="weather-quote">
+    “Wherever you go, no matter what the weather, always bring your own sunshine.” ☀️
+  </blockquote>
+
+  
+<div class="branding">
+  <div class="branding-logo-text">☀️</div>
+  <div class="weather-quote" id="weatherQuote">“Every cloud has a silver lining.”</div>
+  <div class="weather-tip" id="weatherStats">Loading stats...</div>
+</div>
+
+</div>
+
+
+
+
+  <!-- SEARCH BAR -->
+  <div class="search-container">
+    <button onclick="useMyLocation()" type="button" name="location" class="location-btn" title="Use Current Location">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
+          <circle cx="12" cy="12" r="3" />
+          <path d="M12 2v2m0 16v2m10-10h-2M4 12H2m15.364-7.364l-1.414 1.414M6.05 17.95l-1.414 1.414m0-13.828l1.414 1.414m12.728 12.728l1.414 1.414" />
+        </svg>
+    </button>       
+
+    <form class="search-bar" action="search" onsubmit="return false;">
+      <input type="search" id="cityInput" placeholder="Enter city name" required>
+      <button onclick="searchWeather()" type="submit" id="searchBtn">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+      </button>
+      <select id="tempUnit" onchange="changeUnit()">
+        <option value="metric" selected>°C</option>
+        <option value="imperial">°F</option>
+      </select>
+    </form>
+  </div>
+
+  <!-- WEATHER DISPLAY -->
+  <section class="weather-display">
+    <div class="city-header">
+      <div class="city-country-header">
+        <h1>City, Country</h1>
+      </div>
+      <div class="ongoing-warning" id="weatherAlert">
+      Loading alerts...
+      </div>
+
+    </div>
+<div class="main-weather-info">
+  <div class="left-column">
+    <h2>Current Weather</h2>
+    <p class="main-city-clock">--:--</p>
+    <h3>25°C</h3>
+    <img src="https://cdn-icons-png.flaticon.com/512/1163/1163661.png" width="70" alt="Partly Cloudy">
+    <p>Partly Cloudy</p>
+  </div>
+
+  <div class="right-column">
+    <p>Humidity: 86%</p>
+    <p>Wind Speed: 2.4 km/h</p>
+    <p>Feels Like: 26°C</p>
+    <p>UV Index: N/A</p>
+    <p>Visibility: 10.0 km</p>
+  </div>
+</div>
+
+
+  <!-- 5-DAY FORECAST SECTION -->
+  <section class="forecast-container">
+    <h2>5 Day Forecast</h2>
+    <div class="forecast-box">
+      <!-- Forecast cards will be dynamically inserted here -->
+    </div>
+  </section>
+
+  <!-- WEATHER MAP SECTION -->
+  <section class="weather-map-container">
+    <h2>Weather Map</h2>
+    <div class="weather-map-box">
+      <div id="map" style="width: 100%; height: 500px;"></div>
+      <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhaRVHRYrxQs85AyIQJMuzCNsCaB4A-8E&callback=initMap"
+        async
+        defer>
+      </script>
+    </div>
+  </section>
+
+  <!-- OTHER CITIES SECTION -->
+<section class="other-cities-container">
+  <h2>Other Cities</h2>
+
+  <div class="city-grid">
+    <!-- First 6 cities (visible) -->
+    <div class="city-card" data-city="Manila">
+      <h4>Manila</h4>
+      <p class="temp">28°C</p>
+      <p class="weather">Light rain</p>
+      <img class="weather-icon" src="https://openweathermap.org/img/wn/10d@2x.png" alt="light rain" width="50">
+    </div>
+    <div class="city-card" data-city="Cebu">
+      <h4>Cebu</h4>
+      <p class="temp">29°C</p>
+      <p class="weather">Overcast clouds</p>
+      <img class="weather-icon" src="https://openweathermap.org/img/wn/04d@2x.png" alt="overcast clouds" width="50">
+    </div>
+    <div class="city-card" data-city="Davao">
+      <h4>Davao</h4>
+      <p class="temp">28°C</p>
+      <p class="weather">Overcast clouds</p>
+      <img class="weather-icon" src="https://openweathermap.org/img/wn/04d@2x.png" alt="overcast clouds" width="50">
+    </div>
+    <div class="city-card" data-city="Baguio">
+      <h4>Baguio</h4>
+      <p class="temp">21°C</p>
+      <p class="weather">Moderate rain</p>
+      <img class="weather-icon" src="https://openweathermap.org/img/wn/10d@2x.png" alt="moderate rain" width="50">
+    </div>
+    <div class="city-card" data-city="Iloilo">
+      <h4>Iloilo</h4>
+      <p class="temp">29°C</p>
+      <p class="weather">Broken clouds</p>
+      <img class="weather-icon" src="https://openweathermap.org/img/wn/03d@2x.png" alt="broken clouds" width="50">
+    </div>
+    <div class="city-card" data-city="Cagayan de Oro">
+      <h4>Cagayan de Oro</h4>
+      <p class="temp">28°C</p>
+      <p class="weather">Overcast clouds</p>
+      <img class="weather-icon" src="https://openweathermap.org/img/wn/04d@2x.png" alt="overcast clouds" width="50">
+    </div>
+
+    <!-- Remaining cities (hidden initially) -->
+    <div class="city-card hidden" data-city="Zamboanga City">
+      <h4>Zamboanga City</h4>
+      <p class="temp">30°C</p>
+      <p class="weather">Clear sky</p>
+      <img class="weather-icon" src="https://openweathermap.org/img/wn/01d@2x.png" alt="clear sky" width="50">
+    </div>
+    <div class="city-card hidden" data-city="Taguig">
+      <h4>Taguig</h4>
+      <p class="temp">29°C</p>
+      <p class="weather">Few clouds</p>
+      <img class="weather-icon" src="https://openweathermap.org/img/wn/02d@2x.png" alt="few clouds" width="50">
+    </div>
+    <div class="city-card hidden" data-city="Makati">
+      <h4>Makati</h4>
+      <p class="temp">28°C</p>
+      <p class="weather">Scattered clouds</p>
+      <img class="weather-icon" src="https://openweathermap.org/img/wn/03d@2x.png" alt="scattered clouds" width="50">
+    </div>
+    <div class="city-card hidden" data-city="Pasig">
+      <h4>Pasig</h4>
+      <p class="temp">29°C</p>
+      <p class="weather">Broken clouds</p>
+      <img class="weather-icon" src="https://openweathermap.org/img/wn/04d@2x.png" alt="broken clouds" width="50">
+    </div>
+    <div class="city-card hidden" data-city="Antipolo">
+      <h4>Antipolo</h4>
+      <p class="temp">27°C</p>
+      <p class="weather">Shower rain</p>
+      <img class="weather-icon" src="https://openweathermap.org/img/wn/09d@2x.png" alt="shower rain" width="50">
+    </div>
+    <div class="city-card hidden" data-city="Bacolod">
+      <h4>Bacolod</h4>
+      <p class="temp">30°C</p>
+      <p class="weather">Clear sky</p>
+      <img class="weather-icon" src="https://openweathermap.org/img/wn/01d@2x.png" alt="clear sky" width="50">
+    </div>
+    <div class="city-card hidden" data-city="General Santos">
+      <h4>General Santos</h4>
+      <p class="temp">29°C</p>
+      <p class="weather">Few clouds</p>
+      <img class="weather-icon" src="https://openweathermap.org/img/wn/02d@2x.png" alt="few clouds" width="50">
+    </div>
+    <div class="city-card hidden" data-city="Angeles City">
+      <h4>Angeles City</h4>
+      <p class="temp">28°C</p>
+      <p class="weather">Scattered clouds</p>
+      <img class="weather-icon" src="https://openweathermap.org/img/wn/03d@2x.png" alt="scattered clouds" width="50">
+    </div>
+    <div class="city-card hidden" data-city="Lipa">
+      <h4>Lipa</h4>
+      <p class="temp">27°C</p>
+      <p class="weather">Broken clouds</p>
+      <img class="weather-icon" src="https://openweathermap.org/img/wn/04d@2x.png" alt="broken clouds" width="50">
+    </div>
+    <div class="city-card hidden" data-city="Caloocan">
+      <h4>Caloocan</h4>
+      <p class="temp">29°C</p>
+      <p class="weather">Light rain</p>
+      <img class="weather-icon" src="https://openweathermap.org/img/wn/10d@2x.png" alt="light rain" width="50">
+    </div>
+    <div class="city-card hidden" data-city="Las Piñas">
+      <h4>Las Piñas</h4>
+      <p class="temp">28°C</p>
+      <p class="weather">Overcast clouds</p>
+      <img class="weather-icon" src="https://openweathermap.org/img/wn/04d@2x.png" alt="overcast clouds" width="50">
+    </div>
+    <div class="city-card hidden" data-city="Muntinlupa">
+      <h4>Muntinlupa</h4>
+      <p class="temp">29°C</p>
+      <p class="weather">Clear sky</p>
+      <img class="weather-icon" src="https://openweathermap.org/img/wn/01d@2x.png" alt="clear sky" width="50">
+    </div>
+    <div class="city-card hidden" data-city="Quezon City">
+      <h4>Quezon City</h4>
+      <p class="temp">28°C</p>
+      <p class="weather">Few clouds</p>
+      <img class="weather-icon" src="https://openweathermap.org/img/wn/02d@2x.png" alt="few clouds" width="50">
+    </div>
+    <div class="city-card hidden" data-city="Marikina">
+      <h4>Marikina</h4>
+      <p class="temp">27°C</p>
+      <p class="weather">Broken clouds</p>
+      <img class="weather-icon" src="https://openweathermap.org/img/wn/04d@2x.png" alt="broken clouds" width="50">
+    </div>
+    <div class="city-card hidden" data-city="Parañaque">
+      <h4>Parañaque</h4>
+      <p class="temp">29°C</p>
+      <p class="weather">Light rain</p>
+      <img class="weather-icon" src="https://openweathermap.org/img/wn/10d@2x.png" alt="light rain" width="50">
+    </div>
+  </div>
+
+  <!-- Toggle Button -->
+  <button id="toggleCitiesBtn" class="toggle-btn">View More Cities</button>
+</section>
+
+
+<!-- CSS for hidden cities and spacing -->
+<style>
+.city-card.hidden {
+  display: none;
+}
+
+.toggle-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #3498db;
+  border: none;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.toggle-btn:hover {
+  background-color: #2d89c6;
+}
+</style>
+
+<!-- JS to toggle hidden cities -->
+<script>
+const toggleBtn = document.getElementById("toggleCitiesBtn");
+
+toggleBtn.addEventListener("click", () => {
+  const hiddenCities = document.querySelectorAll(".city-card.hidden");
+
+  if (hiddenCities.length > 0) {
+    // Show all hidden cities
+    hiddenCities.forEach(card => card.classList.remove("hidden"));
+    toggleBtn.textContent = "View Less Cities";
+  } else {
+    // Hide the extra cities again (everything after the first 6)
+    const allCities = document.querySelectorAll(".city-card");
+    allCities.forEach((card, index) => {
+      if (index >= 6) card.classList.add("hidden");
+    });
+    toggleBtn.textContent = "View More Cities";
+  }
+});
+</script>
+
+
+
+  <section class="sun-path-container" id="sunPathContainer">
+    <h2>Sun Path Diagram</h2>
+    <div class="sun-path-content">
+      <div class="sun-path-left">
+        <canvas id="sunPathCanvas" width="380" height="200"></canvas>
+      </div>
+      <div class="sun-path-right" id="sunInfo">
+        <p class="sun-info">Loading sun data...</p>
+      </div>
+    </div>
+  </section>
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const sidebar = document.querySelector(".sidebar");
+  const toggleBtn = document.getElementById("sidebarToggle");
+  const arrowIcon = document.getElementById("arrowIcon");
+
+  if (toggleBtn && sidebar) {
+    toggleBtn.addEventListener("click", () => {
+      sidebar.classList.toggle("collapsed");
+
+      // Change arrow direction
+      const collapsed = sidebar.classList.contains("collapsed");
+      arrowIcon.textContent = collapsed ? "❯" : "❮";
+    });
+  }
+});
+</script>
+
+
+
+  <!-- External JS -->
+  <script src="index.js" defer></script>
+</body>
+</html>

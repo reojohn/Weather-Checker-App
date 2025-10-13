@@ -1,0 +1,131 @@
+  <!--<div class="degree-option">
+                    this is the dropdown option for either Fahrenheit or Celsius, so USER can choose whether to read the updates fahrenheit or celsius matter
+                    <div class="popup-header">
+                        <h2>Weather Settings</h2>
+                        <button class="close-btn">&times;</button>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Temperature</h3>
+                        <div class="temp-options">
+                            <label>
+                                <input type="radio" name="temp-unit" value="celsius" checked>
+                                Celsius (°C)
+                            </label>
+                            <label>
+                                <input type="radio" name="temp-unit" value="fahrenheit">
+                                Fahrenheit (°F)
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                -->
+            </section>
+            <section class="weather-display">
+                <!--this is the overall display or dashboard of the weather in the chosen city, country or original location-->
+                <!--Main Frame 1-->
+                <!--should have two columns of containers-->
+                <div class="city-header">
+                    <div class="city-country-header">
+                        <h1><span class="city-name">City, </span><span class="country-name">Country</span></h1>
+                    </div>
+                    <div class="ongoing-warning">
+                        <!--this is a overview summary to display a potential weather warning-->
+                        <p id="warning-text">Ongoing: Tropical Cyclone - Moderate</p>
+                    </div>
+                </div>
+                <div class="main-weather-info">
+                    <div class="left-column">
+                        <div class="current-temp">
+                            <h1 id="current">Current Weather</h1>
+                            <time id="local-time">2:00 PM</time>
+                            <h2 id="temperature">25°C</h2> <!--if user chooses C as temp unit-->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-cloud-sun-fill" viewBox="0 0 16 16">
+                                <path d="M11.473 11a4.5 4.5 0 0 0-8.72-.99A3 3 0 0 0 3 16h8.5a2.5 2.5 0 0 0 0-5z"/>
+                                    <path d="M10.5 1.5a.5.5 0 0 0-1 0v1a.5.5 0 0 0 1 0zm3.743 1.964a.5.5 0 1 0-.707-.707l-.708.707a.5.5 0 0 0 .708.708zm-7.779-.707a.5.5 0 0 0-.707.707l.707.708a.5.5 0 1 0 .708-.708zm1.734 3.374a2 2 0 1 1 3.296 2.198q.3.423.516.898a3 3 0 1 0-4.84-3.225q.529.017 1.028.129m4.484 4.074c.6.215 1.125.59 1.522 1.072a.5.5 0 0 0 .039-.742l-.707-.707a.5.5 0 0 0-.854.377M14.5 6.5a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z"/>
+                            </svg>
+                            <p id="weather-description">Partly Cloudy</p>
+                        </div>
+                        <div class="right-column">
+                            <!--this is the additional info for the weather-->
+                            <p id="humidity">Humidity: 60%</p>
+                            <p id="wind-speed">Wind Speed: 15 km/h</p>
+                            <p id="feels-like">Feels Like: 27°C</p>
+                            <p id="uv-index">UV Index: 5 (Moderate)</p>
+                            <p id="visibility">Visibility: 10 km</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <section class="maps-container">
+            <!--this is where the weather map is displayed, with the pinponted location of the user's origin-->
+            <h2>Weather Map</h2>
+            <div id="map"></div>
+
+                <!-- prettier-ignore -->
+                <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${
+                c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
+                    ({key: "INSERT_YOUR_API_KEY", v: "weekly"});</script>
+            </div>
+        </section>
+        <section class="daily-container">
+            <!--bordered boxes for each day to predict weather-->
+            <h2>7-Day Forecast</h2>
+            <div class="daily-forecast">
+                <!--each box is a day-->
+                <div class="day-box">
+                    <h3>Monday</h3>
+                    <p class="date">Oct 1</p>
+                    <img src="/icons/sunny.png" alt="Sunny Icon" class="weather-icon">
+                    <p class="temp-high">High: 28°C</p>
+                    <p class="temp-low">
+                        Low: 18°C
+                    </p>
+                </div>
+                <div class="day-box">
+                    <h3>Tuesday</h3>
+                    <p class="date">Oct 2</p>
+                    <img src="/icons/sunny.png" alt="Sunny Icon" class="weather-icon">
+                    <p class="temp-high">High: 30°C</p>
+                    <p class="temp-low">
+                        Low: 14°C
+                    </p>
+                </div>
+                <div class="day-box">
+                    <h3>Wednesday</h3>
+                    <p class="date">Oct 3</p>
+                    <img src="/icons/sunny.png" alt="Sunny Icon" class="weather-icon">
+                    <p class="temp-high">High: 38°C</p>
+                    <p class="temp-low">
+                        Low: 20°C
+                    </p>
+                </div>
+            </div>
+        </section>
+        <section class="other-containers">
+            <h2 id="other-cities">Other Cities</h2>
+            <div class="other-cities-list">
+                <!--list of other cities with their weather-->
+                <div class="city-weather-box">
+                    <h3>New York, USA</h3>
+                    <p class="temp">22°C    </p>
+                    <p class="weather-desc">Cloudy</p>
+                </div>
+                <div class="city-weather-box">
+                    <h3>New York, USA</h3>
+                    <p class="temp">22°C    </p>
+                    <p class="weather-desc">Cloudy</p>
+                </div>
+                <div class="city-weather-box">
+                    <h3>New York, USA</h3>
+                    <p class="temp">22°C    </p>
+                    <p class="weather-desc">Cloudy</p>
+                </div>
+                <div class="city-weather-box">
+                    <h3>New York, USA</h3>
+                    <p class="temp">22°C    </p>
+                    <p class="weather-desc">Cloudy</p>
+                </div>
+            </div>
+        </section>

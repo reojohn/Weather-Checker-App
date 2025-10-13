@@ -1,0 +1,1009 @@
+/* ===== ROOT & GLOBAL STYLES ===== */
+:root {
+  --bg-color: #1a2a35;      
+  --text-color: #e0e0e0;    
+  --card-bg: #223340;       
+  --accent-color: #3498db;  
+  --accent-hover: #2d89c6;
+  --border-color: #3f5160;
+  --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+* {
+  font-family: 'Montserrat', sans-serif;
+  color: var(--text-color);
+  margin: 0;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--bg-color);
+  padding: 20px;
+  margin-left: 230px;
+}
+
+/* ===== SEARCH BAR & LOCATION BUTTON ===== */
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 720px;
+  margin-bottom: 20px;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  border-radius: 50px;
+  padding: 8px 12px;
+  background: var(--card-bg);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  flex: 1;
+  gap: 8px;
+}
+
+.search-bar input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 10px 12px;
+  font-size: 16px;
+  color: var(--text-color);
+}
+
+.search-bar button {
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  background: var(--accent-color);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-bar button:hover {
+  background: var(--accent-hover);
+}
+
+.search-bar select {
+  border: none;
+  border-radius: 12px;
+  padding: 6px 10px;
+  background: var(--accent-color);
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.search-bar select:hover {
+  background: var(--accent-hover);
+}
+
+.location-btn {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: var(--accent-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.location-btn:hover {
+  background: var(--accent-hover);
+  transform: scale(1.05);
+}
+
+/* ===== WEATHER DISPLAY ===== */
+.weather-display {
+  width: min(1100px, 94%);
+  padding: 2rem;
+  border-radius: 16px;
+  background: var(--card-bg);
+  box-shadow: var(--box-shadow);
+  margin-bottom: 30px;
+}
+
+.city-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.city-country-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.ongoing-warning {
+  padding: 0.6rem 1rem;
+  background: rgba(255,69,0,0.15);
+  border-radius: 10px;
+  font-weight: 500;
+}
+
+.main-weather-info {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 1.5rem;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.05);
+}
+
+.left-column {
+  flex: 1;
+  text-align: center;
+}
+
+.left-column h2 {
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+}
+
+.left-column h3 {
+  font-size: 2.4rem;
+  margin: 10px 0;
+}
+
+.left-column img {
+  margin: 10px 0;
+}
+
+.right-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+}
+
+/* ===== FORECAST & OTHER CITIES ===== */
+.forecast-container,
+.other-cities-container {
+  width: min(1100px, 94%);
+  padding: 20px;
+  border-radius: 16px;
+  background: var(--card-bg);
+  border: 2px solid rgba(255,255,255,0.1);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+  margin-bottom: 30px;
+}
+
+.forecast-container h2,
+.other-cities-container h2 {
+  margin-bottom: 12px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+/* ===== 5-DAY FORECAST FIXED ===== */
+.forecast-box {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+}
+
+.forecast-box .day {
+  background: rgba(255,255,255,0.1);
+  border-radius: 12px;
+  text-align: center;
+  padding: 12px 8px;
+  font-weight: 600;
+}
+
+.forecast-box .day img {
+  width: 50px;
+  height: 50px;
+  margin: 6px 0;
+}
+
+/* ===== OTHER CITIES FIXED ===== */
+.other-cities-container {
+  width: 100%;          /* make the container take full width */
+  padding: 0;           /* remove extra padding if any */
+  margin: 0 auto;       /* center it if needed */
+  box-sizing: border-box;
+}
+
+.city-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);  /* 3 equal columns */
+  grid-auto-rows: 160px;                  /* row height */
+  gap: 20px;                              /* spacing between cards */
+  width: 100%;                            /* fill parent width */
+  box-sizing: border-box;
+}
+
+.city-card {
+  background-color: #223340;
+  color: #e0e0e0;
+  border-radius: 10px;
+  text-align: center;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;                            /* stretch full width of grid column */
+  box-sizing: border-box;
+}
+
+
+
+
+.city-card .city-name {
+  font-weight: 700;
+  margin-bottom: 8px;
+  font-size: 1.2rem;
+}
+
+.city-card .temp {
+  font-size: 1.4rem;
+  margin-bottom: 6px;
+}
+
+.city-card .weather {
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+/* ===== WEATHER MAP ===== */
+.weather-map-container {
+  width: min(1100px, 94%);
+  padding: 20px;
+  border-radius: 16px;
+  background: var(--card-bg);
+  border: 2px solid rgba(255,255,255,0.1);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+  margin-bottom: 30px;
+}
+
+.weather-map-container h2 {
+  margin-bottom: 12px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+.weather-map-box {
+  border-radius: 16px;
+  overflow: hidden;
+  height: 450px;
+  background: var(--card-bg);
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.4);
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 230px;
+  height: 100vh;
+  background: var(--card-bg);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 2px solid rgba(255,255,255,0.1);
+  box-shadow: 4px 0 15px rgba(0,0,0,0.3);
+  z-index: 10;
+}
+
+/* ===== SUN PATH INSIDE SIDEBAR ===== */
+.sidebar-sunpath {
+  margin-top: 25px;
+  padding: 10px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+.sidebar-sunpath h3 {
+  font-size: 1rem;
+  margin-bottom: 8px;
+  color: var(--accent-color);
+}
+
+/* ✅ FIXED: Make the Sun Path Canvas look crisp and responsive */
+.sidebar-sunpath canvas {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  background: linear-gradient(to bottom, #87CEEB 0%, #001f3f 100%);
+  box-shadow: inset 0 0 4px rgba(0,0,0,0.4);
+}
+
+.sidebar-sunpath .sun-info {
+  font-size: 0.8rem;
+  color: var(--accent-color);
+  margin-top: 6px;
+  line-height: 1.3;
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: var(--accent-color);
+  text-align: center;
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.nav-links a {
+  padding: 10px 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+.nav-links a.active,
+.nav-links a:hover {
+  background: rgba(255,255,255,0.1);
+  color: var(--accent-color);
+}
+
+.theme-toggle {
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: none;
+  background: var(--accent-color);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  background: var(--accent-hover);
+  transform: scale(1.05);
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width: 900px) {
+  body { margin-left: 0; padding: 10px; }
+  .main-weather-info { flex-direction: column; }
+  .cities-box { grid-template-columns: repeat(2, 1fr); }
+  .forecast-box { grid-template-columns: repeat(2, 1fr); overflow-x: auto; }
+  .search-container { flex-direction: column; gap: 10px; }
+}
+
+/* ===== SUN PATH DIAGRAM SECTION ===== */
+.sun-path-container {
+  width: min(1100px, 94%);
+  padding: 20px;
+  border-radius: 16px;
+  background: var(--card-bg);
+  border: 2px solid rgba(255,255,255,0.1);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+  margin-bottom: 30px;
+}
+
+.sun-path-container h2 {
+  margin-bottom: 12px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+.sun-path-box {
+  border-radius: 16px;
+  padding: 20px;
+  background: rgba(255,255,255,0.05);
+  text-align: center;
+}
+
+.sun-info {
+  margin-top: 10px;
+  font-size: 0.95rem;
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+
+/* ===== SUN PATH CONTAINER MOVED TO RIGHT SIDE ===== */
+.sun-path-container {
+  position: fixed;
+  top: 120px;                /* adjust vertical position as needed */
+  right: 40px;               /* moves it to the right edge of the page */
+  width: 380px;
+  background: var(--card-bg);
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  border: 2px solid rgba(255,255,255,0.1);
+  padding: 20px;
+  z-index: 20;
+}
+
+.sun-path-container h2 {
+  text-align: center;
+  color: var(--accent-color);
+  margin-bottom: 12px;
+}
+
+.sun-path-box {
+  border-radius: 16px;
+  padding: 15px;
+  background: rgba(255,255,255,0.05);
+  text-align: center;
+}
+
+.sun-path-box canvas {
+  width: 100%;
+  border-radius: 12px;
+  background: linear-gradient(to bottom, #87CEEB 0%, #001f3f 100%);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.4);
+}
+
+.sun-info {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+/* Hide from sidebar version */
+.sidebar-sunpath {
+  display: none !important;
+}
+
+
+/* ===== FIXED: SUN PATH ON RIGHT SIDE ===== */
+.content-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.main-content {
+  flex: 2;
+}
+
+.sun-path-container {
+  flex: 1;
+  max-width: 360px;
+  align-self: stretch;
+  position: sticky;
+  top: 20px;
+}
+
+/* ===== SUN PATH STYLING FIX ===== */
+/* === Sun Path Section === */
+.sun-path-container {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 20px;
+  color: #fff;
+  margin-top: 20px;
+  width: 100%;
+  max-width: 1200px; /* ✅ same width as Other Cities section */
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.sun-path-container h2 {
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #ffd65b;
+  margin-bottom: 15px;
+}
+
+.sun-path-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Left: Canvas */
+.sun-path-left {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sun-path-left canvas {
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  width: 100%;
+  height: 220px;
+}
+
+/* Right: Info */
+.sun-path-right {
+  flex: 1;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  padding: 15px;
+  text-align: left;
+  font-size: 1rem;
+  line-height: 1.7;
+  min-width: 200px;
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.sun-path-right p {
+  margin: 8px 0;
+  color: #e6e6e6;
+}
+
+.sun-path-right strong {
+  color: #ffd65b;
+}
+
+
+/* === FINAL FIX: Match Sun Path background with other sections === */
+.sun-path-container {
+  background: var(--card-bg) !important; /* same as other containers */
+  border: 2px solid rgba(255,255,255,0.1);
+  box-shadow: var(--box-shadow);
+  color: var(--text-color);
+}
+
+
+.sun-path-container h2 {
+  margin-bottom: 15px;
+  text-align: center;
+  font-size: 1.3em;
+}
+
+.sun-path-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sun-path-left {
+  flex: 1;
+}
+
+.sun-path-right {
+  flex: 1;
+  padding-left: 20px;
+  font-size: 0.95em;
+  line-height: 1.6;
+}
+
+#sunPathCanvas {
+  width: 100%;
+  border-radius: 10px;
+  background: #001f3f;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
+}
+
+/* ====== CITY CARD STYLING & ANIMATIONS ====== */
+.city-card {
+  background: linear-gradient(145deg, #1e293b, #0f172a);
+  color: white;
+  padding: 15px 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  transform: translateY(0);
+  border: 1px solid transparent;
+}
+
+.city-card:hover {
+  background: linear-gradient(145deg, #334155, #1e293b);
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+  border-color: #38bdf8; /* sky-blue highlight */
+}
+
+.city-card:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  border-color: #0ea5e9;
+}
+
+/* Optional: make the temperature text glow slightly */
+.city-card .temp {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #fbbf24;
+  transition: color 0.3s ease;
+}
+
+.city-card:hover .temp {
+  color: #fde68a;
+}
+
+/* Make icons fade in smoothly */
+.city-card img.weather-icon {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.city-card:hover img.weather-icon {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* ===== DARK MODE (default) ===== */
+body.dark-mode .city-card {
+  background: linear-gradient(145deg, #1e293b, #0f172a);
+  color: white;
+  border: 1px solid transparent;
+}
+
+body.dark-mode .city-card:hover {
+  background: linear-gradient(145deg, #334155, #1e293b);
+  border-color: #38bdf8;
+}
+
+/* ===== LIGHT MODE ===== */
+body.light-mode .city-card {
+  background: linear-gradient(145deg, #f8fafc, #e2e8f0);
+  color: #111827;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+body.light-mode .city-card:hover {
+  background: linear-gradient(145deg, #ffffff, #e5e7eb);
+  transform: translateY(-6px) scale(1.05);
+  border-color: #38bdf8;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+body.light-mode .city-card .temp {
+  color: #eab308;
+}
+
+/* ===== FIX FOR 5-DAY FORECAST CARDS LIGHT/DARK MODE ===== */
+
+/* 🌓 Default Forecast Card Look */
+.forecast-box .day {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* 🌙 Dark Mode Forecast Cards */
+body.dark-mode .forecast-box .day {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+body.dark-mode .forecast-box .day:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* ☀️ Light Mode Forecast Cards */
+body.light-mode .forecast-box .day {
+  background: #ffffff;
+  color: #222;
+  border: 1px solid #ddd;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+body.light-mode .forecast-box .day:hover {
+  transform: translateY(-6px) scale(1.04);
+  background: #f4f9ff;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+}
+
+/* 🌈 Optional: Add smooth glow when hovered */
+body.light-mode .forecast-box .day:hover {
+  box-shadow: 0 0 15px rgba(0, 136, 255, 0.3);
+}
+body.dark-mode .forecast-box .day:hover {
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+/* ✨ Enhanced Dark Mode Hover Animation for Forecast Cards */
+body.dark-mode .forecast-card:hover {
+  transform: translateY(-6px) scale(1.05);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 20px rgba(0, 255, 255, 0.25);
+  border-color: rgba(0, 255, 255, 0.4);
+  transition: all 0.3s ease;
+}
+
+.forecast-container {
+  margin-top: 60px;
+}
+
+/* ====== SIDE BAR TOGGLE ====== */
+.sidebar-toggle {
+  position: absolute;
+  top: 10%;
+  right: -18px; /* makes it stick outside the sidebar */
+  transform: translateY(-50%);
+  background-color: var(--card-bg);
+  border: none;
+  border-radius: 0 8px 8px 0;
+  color: #fff;
+  border-right: 2px solid rgba(255,255,255,0.1);
+  width: 24px;
+  height: 48px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: right 0.3s ease, background-color 0.3s ease;
+  z-index: 10;
+}
+
+.sidebar-toggle:hover {
+  background-color: var(--accent-hover-color, #555);
+}
+
+/* ====== SIDEBAR BASE ====== */
+.sidebar {
+  transition: transform 0.4s ease, opacity 0.4s ease; /* ✅ ADDED smoother slide+fade */
+  opacity: 1; /* ✅ ADDED */
+}
+
+/* Sidebar hidden (retracted) state */
+.sidebar.collapsed {
+  transform: translateX(-220px);
+  opacity: 0.3; /* ✅ ADDED subtle fade-out effect */
+}
+
+.sidebar.collapsed .sidebar-toggle {
+  right: -18px;
+}
+
+
+
+/* ✅ FIX: Ensure toggle button is always visible */
+.sidebar-toggle {
+  position: absolute;
+  top: 50%; /* Center vertically */
+  right: -20px; /* Slightly outside sidebar */
+  transform: translateY(-50%);
+  background-color: var(--card-bg, #333);
+  border: none;
+  border-radius: 0 8px 8px 0;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 999; /* Make sure it stays above other elements */
+  transition: background-color 0.3s ease, right 0.4s ease;
+}
+
+.sidebar-toggle:hover {
+  background-color: var(--accent-hover-color, #555);
+}
+
+/* ====== SIDEBAR TOGGLE ====== */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 220px;
+  background: var(--card-bg, #1e1e2f);
+  color: #fff;
+  transition: transform 0.3s ease;
+  z-index: 100;
+}
+
+/* Toggle button styling */
+.sidebar-toggle {
+  position: absolute;
+  top: 50%;
+  right: -18px;
+  transform: translateY(-50%);
+  background-color: var(--card-bg, #1e1e2f);
+  border: none;
+  border-radius: 0 8px 8px 0;
+  color: #fff;
+  border-right: 2px solid rgba(255,255,255,0.1);
+  width: 24px;
+  height: 48px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar-toggle:hover {
+  background-color: var(--accent-hover-color, #555);
+}
+
+/* Collapsed sidebar state */
+.sidebar.collapsed {
+  transform: translateX(-200px);
+}
+
+
+/* Default layout when sidebar is open */
+.main-content {
+  margin-left: 250px;
+  margin-right: 0;
+  transition: margin 0.3s ease;
+}
+
+/* ===== WHEN SIDEBAR IS COLLAPSED ===== */
+body.sidebar-collapsed .main-content {
+  margin-left: auto;
+  margin-right: auto;
+  transition: margin 0.3s ease;
+  max-width: 1100px; /* keep centered width neat */
+}
+
+
+
+.main-content > section {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.sidebar-toggle {
+  z-index: 1100;
+}
+
+
+body.sidebar-collapsed .main-content {
+  margin-left: auto;
+  margin-right: auto;
+  width: min(1100px, 95%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.sidebar-filler {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* start from top to allow spacing */
+  background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.1));
+  backdrop-filter: blur(8px);
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+  pointer-events: none;
+  padding: 40px 20px 20px 20px; /* more padding on top */
+}
+
+.sidebar.collapsed + .sidebar-filler {
+  opacity: 1;
+}
+
+/* Branding styles */
+.branding {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px; /* bigger space below logo before quote */
+}
+
+.branding-logo-text {
+  font-size: 3rem;
+  color: #ffd43b;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  animation: floatCloud 4s ease-in-out infinite;
+}
+
+.branding-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: #fff;
+  margin-top: 10px; /* space between logo emoji and title */
+}
+
+/* Quote styling */
+.weather-quote {
+  font-size: 1rem;
+  font-style: italic;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.85);
+  max-width: 180px;
+}
+
+/* Floating animation for cloud icon */
+@keyframes floatCloud {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); } /* slightly higher float */
+}
+
+
+.weather-tip {
+  font-size: 0.85rem;           /* slightly smaller than quote */
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  margin-top: 15px;             /* spacing below quote */
+  line-height: 1.4;
+  margin-top: 10px;
+}
+
+/* ===== SIDEBAR STATS GLASSMORPHISM ===== */
+.weather-tip {
+  margin-top: 10px;
+  padding: 15px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.1); /* semi-transparent */
+  backdrop-filter: blur(10px);           /* glass effect */
+  -webkit-backdrop-filter: blur(10px);   /* Safari support */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Table inside weather-tip */
+.weather-tip table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.weather-tip table th,
+.weather-tip table td {
+  padding: 8px 10px;
+}
+
+.weather-tip table th {
+  font-weight: 600;
+  color: #ffd700;
+}
+
+.weather-tip table td {
+  color: #ffffff;
+}
+
+/* Optional: hover effect on rows */
+.weather-tip table tr:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+}
