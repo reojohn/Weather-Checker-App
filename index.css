@@ -1148,3 +1148,49 @@ body.light-mode #weatherAlert {
   color: var(--text-color) !important;
 }
 
+/* ===== Sidebar Base ===== */
+.sidebar {
+  position: fixed; /* Keep it fixed to the left */
+  top: 0;
+  left: 0;         /* Sidebar on left side */
+  height: 100vh;   /* Full viewport height */
+  width: 220px;
+  background-color: var(--card-bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease;
+  z-index: 5;
+}
+
+/* ===== Sidebar Toggle Button ===== */
+.sidebar-toggle {
+  position: absolute;
+  top: 100px;       /* Slightly below top, near logo */
+  right: -18px;    /* Stick outside sidebar */
+  background-color: var(--card-bg);
+  border: none;
+  border-radius: 0 8px 8px 0;
+  color: #fff;
+  width: 24px;
+  height: 48px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: right 0.3s ease, background-color 0.3s ease;
+}
+
+.sidebar-toggle:hover {
+  background-color: var(--accent-hover, #555);
+}
+
+/* ===== Collapsed State ===== */
+.sidebar.collapsed {
+  transform: translateX(-220px); /* Slide left */
+}
+
+.sidebar.collapsed .sidebar-toggle {
+  right: -18px;
+}

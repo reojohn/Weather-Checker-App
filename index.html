@@ -22,9 +22,16 @@
 
   
  <!-- ===== SIDE NAVBAR ===== -->
+<!-- ===== SIDE NAVBAR ===== -->
 <aside class="sidebar">
   <div class="sidebar-top">
     <h2 class="logo">☁️ WeatherApp</h2>
+
+    <!-- Sidebar toggle button moved beside the logo -->
+    <button id="sidebarToggle" class="sidebar-toggle">
+      <span id="arrowIcon">❮</span>
+    </button>
+
     <nav class="nav-links">
       <a href="#" class="active">🏠 Home</a>
       <a href="#">🌦️ Forecast</a>
@@ -33,16 +40,11 @@
     </nav>
   </div>
 
-  <button id="sidebarToggle" class="sidebar-toggle">
-    <span id="arrowIcon">❮</span>
-  </button>
+  <div class="sidebar-bottom">
+    <button id="theme-toggle" class="theme-toggle">🌙 Dark Mode</button>
+  </div>
+</aside>
 
-
-
-    <div class="sidebar-bottom">
-      <button id="theme-toggle" class="theme-toggle">🌙 Dark Mode</button>
-    </div>
-  </aside>
 
 
 <div class="sidebar-filler">

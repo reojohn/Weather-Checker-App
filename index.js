@@ -428,7 +428,7 @@ function drawAdvancedSunPath(sunriseUTC, sunsetUTC, cityNowDate = new Date()) {
     ctx.strokeStyle = "#FFD700";
     ctx.stroke();
 
-    // ✅ FIX: use the city’s current time instead of device time
+    //  use the city’s current time instead of device time
     const nowMs = cityNowDate.getTime();
 
     const sunriseMs = (sunriseUTC instanceof Date) ? sunriseUTC.getTime() : new Date(sunriseUTC).getTime();
@@ -653,7 +653,7 @@ function updateSidebarStats(data) {
   const statsEl = document.getElementById("weatherStats");
   statsEl.innerHTML = html;
 
-  // ✅ FIX: update text colors based on theme
+  //  update text colors based on theme
   if (document.body.classList.contains("light-mode")) {
     statsEl.style.color = "#111";          // dark text for readability
     statsEl.querySelectorAll("th").forEach(el => el.style.color = "#111"); 
@@ -666,7 +666,7 @@ function updateSidebarStats(data) {
 }
 
 
-// ✅ Generate a friendly weather tip based on current data
+//  Generate a friendly weather tip based on current data
 function generateWeatherTip(data) {
   const tempC = data.main.temp;
   const humidity = data.main.humidity;
