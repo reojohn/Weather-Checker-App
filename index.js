@@ -11,7 +11,7 @@ let _sunPathAnimationId = null; // store requestAnimationFrame ID for sun diagra
 // Track if a weather-driven sun update already happened
 let _sunInitializedFromWeather = false; // flag to prevent multiple sun updates
 
-// ===== ☀️ SUN DATA & DIAGRAM =====
+// ===== SUN DATA & DIAGRAM =====
 async function updateSunData(lat, lon, timezoneOffsetSeconds = 0) {
   try {
     const resp = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`);
@@ -21,7 +21,7 @@ async function updateSunData(lat, lon, timezoneOffsetSeconds = 0) {
     if (!d.sys) throw new Error("Sun data not found in API response");
 
     const sunriseUnix = d.sys.sunrise; // UTC seconds
-    const sunsetUnix = d.sys.sunset;   // UTC seconds
+    const sunsetUnix = d.sys.sunset;   // UTC seconds           
     const tzSec = d.timezone ?? timezoneOffsetSeconds ?? 0;
 
     const fmtLocal = (utcSeconds) => {
@@ -323,14 +323,14 @@ const navLinks = document.querySelectorAll('.nav-links a');
 
 navLinks.forEach(link => {
   link.addEventListener('click', (e) => {
-    e.preventDefault();
+    e.preventDefault(); 
     navLinks.forEach(l => l.classList.remove('active')); // remove active from all
     link.classList.add('active'); // set clicked link active
 
     const targetText = link.textContent.trim();
     if (targetText === "🏠 Home") window.scrollTo({ top: 0, behavior: 'smooth' });
     else if (targetText === "🌦️ Forecast") {
-      document.querySelector('.forecast-container').scrollIntoView({ behavior: 'smooth' });
+      document.querySelector('.forecast-container').scrollIntoView({ behavior:  'smooth' });
     }
     else if (targetText === "🗺️ Map") {
       document.querySelector('.weather-map-container').scrollIntoView({ behavior: 'smooth' });
