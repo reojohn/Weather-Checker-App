@@ -1598,6 +1598,104 @@ body.light-mode #weatherAlert {
   text-align: center;
 }
 
+/* ===== SUN PATH CONTAINER ===== */
+.sun-path-container {
+  position: sticky;          /* stays visible while scrolling */
+  top: 20px;                 /* distance from top */
+  right: 40px;               /* distance from right edge */
+  flex: 1;                   /* align with main content layout */
+  max-width: 360px;          /* fixed width */
+  background: var(--card-bg);
+  border: 2px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  box-shadow: var(--box-shadow);
+  padding: 20px;
+  z-index: 20;
+  color: var(--text-color);
+}
+
+/* Title */
+.sun-path-container h2 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--accent-color);
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* Inner content flex */
+.sun-path-content {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Left side: Canvas */
+.sun-path-left {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sun-path-left canvas {
+  width: 100%;
+  max-width: 100%;
+  height: 220px;
+  border-radius: 12px;
+  background: linear-gradient(to bottom, #87CEEB 0%, #001f3f 100%);
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.4);
+  display: block;
+}
+
+/* Right side: Info Box */
+.sun-path-right {
+  flex: 1;
+  background: rgba(0,0,0,0.25);
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  min-width: 150px;
+  color: var(--accent-color);
+}
+
+.sun-path-right p {
+  margin: 6px 0;
+}
+
+.sun-path-right strong {
+  color: #ffd65b;
+}
+
+/* Responsive for small screens */
+@media (max-width: 900px) {
+  .sun-path-container {
+    position: relative;   /* remove sticky on small screens */
+    max-width: 100%;
+    margin: 20px auto;
+    right: 0;
+  }
+
+  .sun-path-content {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .sun-path-left,
+  .sun-path-right {
+    width: 100%;
+  }
+
+  .sun-path-left canvas {
+    height: 180px;
+  }
+}
+
 /* ===== Collapsed State ===== */
 .sidebar.collapsed {
   transform: translateX(-220px); /* Slide left */
