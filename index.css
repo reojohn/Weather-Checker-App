@@ -1396,3 +1396,67 @@ body.light-mode #weatherAlert {
     width: 100%; /* make each card fill the column */
   }
 }
+
+/* Make sidebar always on top */
+.sidebar {
+  position: fixed;      /* keeps it in place */
+  top: 0;
+  left: 0;
+  width: 250px;         /* or your current width */
+  height: 100%;
+  z-index: 9999;        /* very high so it's above everything */
+}
+
+/* Ensure sun path section is below the sidebar */
+.sun-path-container {
+  position: relative;    /* default stacking context */
+  z-index: 1;            /* lower than sidebar */
+}
+
+/* Optional: make navbar links always clickable */
+.nav-links a {
+  position: relative;
+  z-index: 10000;
+}
+
+/* ✅ SUN PATH: aligned with other sections */
+.sun-path-container {
+    position: relative;       /* no fixed anymore */
+    top: auto;
+    right: auto;
+    width: 100%;
+    max-width: 1200px;        /* same as other sections */
+    margin: 40px auto;        /* center it like other sections */
+    padding: 20px;
+    background: var(--card-bg); 
+    border-radius: 16px;
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: var(--box-shadow);
+    box-sizing: border-box;
+}
+
+/* Optional: Sun path inner content */
+.sun-path-content {
+    display: flex;
+    flex-direction: row;       /* horizontal layout */
+    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Canvas scaling */
+.sun-path-left canvas {
+    width: 100%;
+    max-width: 600px;         /* match other section visuals */
+    height: 220px;
+    border-radius: 10px;
+}
+
+/* Info section */
+.sun-path-right {
+    flex: 1;
+    padding-left: 20px;
+    font-size: 0.95em;
+    line-height: 1.6;
+}
+
