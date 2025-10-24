@@ -19,10 +19,13 @@ async function updateSunData(lat, lon, timezoneOffsetSeconds = 0) {
 
     const d = await resp.json();
     if (!d.sys) throw new Error("Sun data not found in API response");
+const sunriseUnix = d.sys.sunrise; // UTC seconds
+const sunsetUnix = d.sys.sunset;   // UTC seconds
+const tzSec = d.timezone ?? timezoneOffsetSeconds ?? 0;
 
-    const sunriseUnix = d.sys.sunrise; // UTC seconds
-    const sunsetUnix = d.sys.sunset;   // UTC seconds           
-    const tzSec = d.timezone ?? timezoneOffsetSeconds ?? 0;
+// Save to globals for resize
+_currentSunrise = new Date((sunriseUnix + tzSec) * 1000);
+_currentSunset  = new Date((sunsetUnix + tzSec) * 1000);
 
     const fmtLocal = (utcSeconds) => {
       const cityTime = new Date((utcSeconds + tzSec) * 1000);
@@ -476,6 +479,15 @@ function drawAdvancedSunPath(sunriseUTC, sunsetUTC, cityNowDate = new Date()) {
   render();
 }
 
+let _currentSunrise = null;
+let _currentSunset = null;
+
+
+window.addEventListener("resize", () => {
+  if (_sunInitializedFromWeather && _currentSunrise && _currentSunset) {
+    drawAdvancedSunPath(_currentSunrise, _currentSunset, new Date());
+  }
+});
 
 // expose drawing function globally
 window.drawAdvancedSunPath = drawAdvancedSunPath;

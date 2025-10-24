@@ -263,36 +263,36 @@ body {
 }
 
 /* ===== WEATHER MAP ===== */
-.weather-map-container {
-  width: min(1100px, 94%);
-  padding: 20px;
-  border-radius: 16px;
-  background: var(--card-bg);
-  border: 2px solid rgba(255,255,255,0.1);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
-  margin-bottom: 30px;
-}
+  .weather-map-container {
+    width: min(1100px, 94%);
+    padding: 20px;
+    border-radius: 16px;
+    background: var(--card-bg);
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+    margin-bottom: 30px;
+  }
 
-.weather-map-container h2 {
-  margin-bottom: 12px;
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--text-color);
-}
+  .weather-map-container h2 {
+    margin-bottom: 12px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-color);
+  }
 
-.weather-map-box {
-  border-radius: 16px;
-  overflow: hidden;
-  height: 450px;
-  background: var(--card-bg);
-  box-shadow: inset 0 0 6px rgba(0,0,0,0.4);
-}
+  .weather-map-box {
+    border-radius: 16px;
+    overflow: hidden;
+    height: 450px;
+    background: var(--card-bg);
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.4);
+  }
 
-#map {
-  width: 100%;
-  height: 100%;
-  border-radius: 12px;
-}
+  #map {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+  }
 
 /* ===== SIDEBAR ===== */
 .sidebar {
@@ -1194,3 +1194,186 @@ body.light-mode #weatherAlert {
 .sidebar.collapsed .sidebar-toggle {
   right: -18px;
 }
+
+/* Common styling for main sections */
+.weather-display,
+.forecast-container,
+.weather-map-container,
+.other-cities-container,
+.sun-path-container {
+  width: 100%;
+  max-width: 1200px;   /* keeps them aligned with same width */
+  margin: 40px auto;   /* 40px space top & bottom, centered */
+  padding: 0 20px;     /* side padding for smaller screens */
+  box-sizing: border-box;
+}
+
+/* Optional: add extra spacing for current weather */
+./* Align 5-day forecast and map with other sections */
+.forecast-container,
+.weather-map-container {
+  width: 100%;
+  max-width: 1200px;   /* same as other sections like .weather-display */
+  margin: 0 auto;       /* center the container */
+  padding: 0 20px;      /* optional: small side padding for responsiveness */
+  box-sizing: border-box;
+}
+
+/* Apply to main content sections */
+.weather-display,
+.forecast-container,
+.weather-map-container,
+.other-cities-container {
+  padding-top: 25px;    /* stretch a little at the top */
+  padding-bottom: 25px; /* stretch a little at the bottom */
+  box-sizing: border-box; /* include padding in width */
+}
+
+
+
+@media (max-width: 600px) {
+  .city-card { width: 100%; }
+  .forecast-box { flex-direction: column; }
+}
+#sunPathCanvas {
+  width: 100%;
+  height: calc(30vw); /* height scales with screen width */
+  max-height: 300px;  /* optional cap */
+  border: 1px solid #ccc;
+  display: block;
+  margin: 0 auto;
+}
+.weather-map-container #map {
+  width: 100%;
+  height: 300px; /* desktop */
+}
+
+@media (max-width: 600px) {
+  .weather-map-container #map {
+    height: 200px; /* smaller for phones */
+  }
+}
+
+
+
+
+
+
+/* Wrapper to center the sun path */
+.sun-path-wrapper {
+    width: 100%;           /* take full width of parent */
+    max-width: 800px;      /* optional max width */
+    margin: 0 auto;        /* center horizontally */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;      /* prevent overflowing */
+    padding: 20px 0;       /* optional spacing */
+}
+
+/* The sun path diagram itself */
+.sun-path {
+    width: 100%;           /* scale with parent */
+    max-width: 600px;      /* optional max size */
+    height: auto;          /* keep aspect ratio */
+    display: block;        /* remove inline spacing issues */
+}
+
+.sidebar-filler {
+  background-color: #5a6b8c; /* bluish-gray original look */
+  color: #fff; /* keep the text readable */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Hide on smaller screens */
+@media (max-width: 1000px) {
+  .sidebar-filler {
+    display: none;
+  }
+}
+
+
+.search-container {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto; /* keeps buttons & input in one row */
+  align-items: center;
+  gap: 10px;
+}
+
+.use-location-btn {
+  grid-column: 1;
+}
+
+.search-input {
+  grid-column: 2;
+  width: 100%;
+}
+
+.search-btn {
+  grid-column: 3;
+}
+
+.temp-unit-btn {
+  grid-column: 4;
+}
+
+/* Wrapper to center the sun path */
+.sun-path-wrapper {
+    width: 100%;           /* take full width of parent */
+    max-width: 800px;      /* optional max width */
+    margin: 0 auto;        /* center horizontally */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;      /* prevent overflowing */
+    padding: 20px 0;       /* optional spacing */
+}
+
+/* The sun path diagram itself */
+.sun-path {
+    width: 100%;           /* scale with parent */
+    max-width: 600px;      /* optional max size */
+    height: auto;          /* keep aspect ratio */
+    display: block;        /* remove inline spacing issues */
+}
+
+/* Sidebar filler */
+.sidebar-filler {
+    background-color: #5a6b8c; /* bluish-gray original look */
+    color: #fff;               /* keep the text readable */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Hide on smaller screens */
+@media (max-width: 1000px) {
+    .sidebar-filler {
+        display: none;
+    }
+}
+
+
+
+/* Sidebar container */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* full viewport height */
+  min-height: 100%; /* fallback */
+  width: 250px; /* or your desired width */
+  padding: 20px;
+  box-sizing: border-box;
+  /* DO NOT set background-color here, it will keep your existing color */
+}
+
+/* Sidebar nav buttons container */
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  flex: 1; /* stretch vertically */
+  gap: 10px;
+}
+
