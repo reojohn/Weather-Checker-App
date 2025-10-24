@@ -1761,3 +1761,45 @@ background-color: var(--accent-hover, #555);
 .sidebar.collapsed .sidebar-toggle {
   right: -18px;
 }
+
+/* Reset conflicting positioning */
+.sun-path-container {
+    position: relative !important; /* remove fixed/sticky behavior */
+    top: auto !important;
+    right: auto !important;
+    flex: none !important;
+    width: 100%;
+    max-width: 1200px;          /* same as other sections */
+    margin: 40px auto;           /* center horizontally */
+    padding: 20px;               /* standard padding */
+    box-sizing: border-box;
+    border: 2px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    background: var(--card-bg);
+    box-shadow: var(--box-shadow);
+}
+
+/* Center the content inside */
+.sun-path-wrapper {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Scale the sun path diagram */
+.sun-path {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    display: block;
+}
+
+/* Adjust responsive behavior */
+@media(max-width: 900px) {
+    .sun-path {
+        max-width: 100%;
+    }
+}
