@@ -1508,3 +1508,107 @@ body.light-mode #weatherAlert {
   }
 }
 
+
+
+/* ===== SUN PATH DIAGRAM ===== */
+.sun-path-container {
+  position: sticky;
+  top: 20px;
+  right: 40px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: min(1100px, 100%);
+  padding: 20px;
+  border-radius: 16px;
+
+  background: var(--card-bg);
+  border: 2px solid rgba(255,255,255,0.1);
+  box-shadow: var(--box-shadow, 0 6px 16px rgba(0,0,0,0.25));
+  color: #fff;
+
+  margin: 20px auto 30px;
+}
+
+/* === Header === */
+.sun-path-container h2 {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--accent-color, #ffd65b);
+  margin-bottom: 15px;
+}
+
+/* === Content Layout === */
+.sun-path-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  width: 100%;
+  gap: 20px;
+}
+
+/* === Left: Canvas Area === */
+.sun-path-left {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sun-path-left canvas,
+#sunPathCanvas {
+  width: 100%;
+  height: 220px;
+  border-radius: 12px;
+  background: linear-gradient(to bottom, #87CEEB 0%, #001f3f 100%);
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.4);
+}
+
+/* === Right: Info Area === */
+.sun-path-right {
+  flex: 1;
+  background: rgba(0,0,0,0.3);
+  border-radius: 12px;
+  padding: 15px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #e6e6e6;
+}
+
+.sun-path-right p {
+  margin: 8px 0;
+}
+
+.sun-path-right strong {
+  color: var(--accent-color, #ffd65b);
+}
+
+/* === Sun Info Text === */
+.sun-info {
+  margin-top: 10px;
+  font-size: 0.95rem;
+  color: var(--accent-color, #ffd65b);
+  font-weight: 600;
+  text-align: center;
+}
+
+/* ===== Collapsed State ===== */
+.sidebar.collapsed {
+  transform: translateX(-220px); /* Slide left */
+}
+
+.sidebar.collapsed .sidebar-toggle {
+  right: -18px;
+  background-color: white;
+  color: black;
+}
+
+.sidebar.collapsed .sidebar-toggle:hover {
+background-color: var(--accent-hover, #555);
+}
