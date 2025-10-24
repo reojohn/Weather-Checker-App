@@ -1377,3 +1377,22 @@ body.light-mode #weatherAlert {
   gap: 10px;
 }
 
+
+/* ===== RESPONSIVE FIX FOR CITY CARDS ===== */
+@media (max-width: 900px) {
+  .city-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns instead of 3 */
+    gap: 15px;
+  }
+}
+
+@media (max-width: 600px) {
+  .city-grid {
+    grid-template-columns: 1fr; /* 1 column for very small screens */
+    gap: 12px;
+  }
+
+  .city-card {
+    width: 100%; /* make each card fill the column */
+  }
+}

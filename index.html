@@ -37,6 +37,8 @@
       <a href="#">🌦️ Forecast</a>
       <a href="#">🗺️ Map</a>
       <a href="#">📍 Locations</a>
+      <!-- Sun Path nav button -->
+<a href="#sunPathContainer">🌞 Sun Path</a>
     </nav>
   </div>
 
@@ -44,6 +46,7 @@
     <button id="theme-toggle" class="theme-toggle">🌙 Dark Mode</button>
   </div>
 </aside>
+
 
 
 
@@ -335,19 +338,17 @@ toggleBtn.addEventListener("click", () => {
 
 
 
-
-  <section class="sun-path-container" id="sunPathContainer">
-    <h2>Sun Path Diagram</h2>
-    <div class="sun-path-content">
-      <div class="sun-path-left">
-        <canvas id="sunPathCanvas"></canvas>
-      </div>
-      <div class="sun-path-right" id="sunInfo">
-        <p class="sun-info">Loading sun data...</p>
-      </div>
+<section class="sun-path-container" id="sunPathContainer">
+  <h2>Sun Path Diagram</h2>
+  <div class="sun-path-content">
+    <div class="sun-path-left">
+      <canvas id="sunPathCanvas"></canvas>
     </div>
-  </section>
-
+    <div class="sun-path-right" id="sunInfo">
+      <p class="sun-info">Loading sun data...</p>
+    </div>
+  </div>
+</section>
 
 
 <script>
