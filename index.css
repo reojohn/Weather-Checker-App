@@ -1460,3 +1460,47 @@ body.light-mode #weatherAlert {
     line-height: 1.6;
 }
 
+.search-container {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+  overflow: hidden; /* prevent overflowing */
+}
+
+.location-btn {
+  flex: 0 0 auto; /* fixed size, won't shrink */
+  padding: 8px;
+}
+
+.search-bar {
+  display: flex;
+  flex: 1 1 auto; /* can grow and shrink */
+  gap: 8px;
+  min-width: 0; /* allow shrinking */
+  overflow: hidden; /* important */
+}
+
+.search-bar input[type="search"] {
+  flex: 1 1 0; /* input takes remaining space and can shrink */
+  min-width: 50px; /* minimum width */
+  padding: 6px;
+}
+
+.search-bar .btn, .search-bar select {
+  flex: 0 0 auto; /* fixed size */
+  padding: 6px;
+  white-space: nowrap; /* prevent buttons from breaking */
+}
+
+/* Mobile view */
+@media (max-width: 480px) {
+  .search-bar input[type="search"] {
+    font-size: 14px;
+    padding: 4px;
+  }
+  .search-bar .btn, .search-bar select {
+    font-size: 12px;
+    padding: 4px;
+  }
+}
