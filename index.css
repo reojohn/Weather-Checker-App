@@ -1460,12 +1460,13 @@ body.light-mode #weatherAlert {
     line-height: 1.6;
 }
 
-.search-container {
+..search-container {
   display: flex;
   gap: 8px;
   align-items: center;
+  flex-wrap: nowrap; /* prevent wrapping */
   width: 100%;
-  overflow: hidden; /* prevent overflowing */
+  overflow: hidden;
 }
 
 .location-btn {
@@ -1478,24 +1479,26 @@ body.light-mode #weatherAlert {
   flex: 1 1 auto; /* can grow and shrink */
   gap: 8px;
   min-width: 0; /* allow shrinking */
-  overflow: hidden; /* important */
+  overflow: hidden;
 }
 
 .search-bar input[type="search"] {
   flex: 1 1 0; /* input takes remaining space and can shrink */
   min-width: 50px; /* minimum width */
   padding: 6px;
+  box-sizing: border-box;
 }
 
 .search-bar .btn, .search-bar select {
   flex: 0 0 auto; /* fixed size */
   padding: 6px;
-  white-space: nowrap; /* prevent buttons from breaking */
+  white-space: nowrap;
 }
 
 /* Mobile view */
 @media (max-width: 480px) {
   .search-bar input[type="search"] {
+    flex: 1 1 80px; /* shrink more on phones */
     font-size: 14px;
     padding: 4px;
   }
@@ -1504,3 +1507,4 @@ body.light-mode #weatherAlert {
     padding: 4px;
   }
 }
+
